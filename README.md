@@ -24,12 +24,12 @@
 
 <br/>
 
-Pixel Agents turns multi-agent AI systems into something you can actually see and manage. Each agent becomes a character in a pixel art office. They walk around, sit at their desk, and visually reflect what they are doing — typing when writing code, reading when searching files, waiting when it needs your attention.
+Pixel Agents turns multi-agent AI systems into something you can actually see and manage. Each agent becomes a character in a pixel art yacht scene on the sea. Agents that are actively working sail on the yacht deck, while idle agents float and lie in the sea below — typing when writing code, reading when searching files, waiting when it needs your attention.
 
 It ships in **two flavors from the same source tree**:
 
 - **VS Code extension** — `pablodelucca.pixel-agents` on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=pablodelucca.pixel-agents) and [Open VSX](https://open-vsx.org/extension/pablodelucca/pixel-agents). Agents spawn into VS Code terminals; characters render in the panel area.
-- **Standalone CLI** — `npx pixel-agents` runs a local Fastify server and serves the office as a browser SPA. Useful in tmux workflows, remote sessions, or any environment without a desktop VS Code.
+- **Standalone CLI** — `npx pixel-agents` runs a local Fastify server and serves the yacht scene as a browser SPA. Useful in tmux workflows, remote sessions, or any environment without a desktop VS Code.
 
 Internally, the architecture is fully agent-agnostic and platform-agnostic: a typed `HookProvider` interface defines the integration boundary so adding a new AI tool is a single subdirectory of code. Claude Code is the reference implementation today; Codex, Gemini, Cursor, and others are on the roadmap.
 
@@ -39,7 +39,7 @@ Internally, the architecture is fully agent-agnostic and platform-agnostic: a ty
 
 - **One agent, one character** — every Claude Code terminal gets its own animated character
 - **Live activity tracking** — characters animate based on what the agent is actually doing (writing, reading, running commands)
-- **Office layout editor** — design your office with floors, walls, and furniture using a built-in editor
+- **Yacht layout editor** — design your yacht and sea scene with decks, cabins, and furniture using a built-in editor
 - **Speech bubbles** — visual indicators when an agent is waiting for input or needs permission
 - **Sound notifications** — optional chime when an agent finishes its turn
 - **Sub-agent visualization** — Task tool sub-agents spawn as separate characters linked to their parent
@@ -101,11 +101,11 @@ The staged Vercel output serves the standalone webview at `/webview/` and the Li
 2. Click **+ Agent** to spawn a new Claude Code terminal and its character. Right-click for the option to launch with `--dangerously-skip-permissions` (bypasses all tool approval prompts)
 3. Start coding with Claude — watch the character react in real time
 4. Click a character to select it, then click a seat to reassign it
-5. Click **Layout** to open the office editor and customize your space
+5. Click **Layout** to open the yacht editor and customize your scene
 
 ## Layout Editor
 
-The built-in editor lets you design your office:
+The built-in editor lets you design your yacht and sea scene:
 
 - **Floor** — Full HSB color control
 - **Walls** — Auto-tiling walls with color customization
@@ -115,9 +115,9 @@ The built-in editor lets you design your office:
 
 The grid is expandable up to 64×64 tiles. Click the ghost border outside the current grid to grow it.
 
-### Office Assets
+### Yacht & Sea Assets
 
-All office assets (furniture, floors, walls) are now **fully open-source** and included in this repository under `webview-ui/public/assets/`. No external purchases or imports are needed — everything works out of the box.
+All yacht and sea assets (furniture, decks, water) are now **fully open-source** and included in this repository under `webview-ui/public/assets/`. No external purchases or imports are needed — everything works out of the box.
 
 Each furniture item lives in its own folder under `assets/furniture/` with a `manifest.json` that declares its sprites, rotation groups, state groups (on/off), and animation frames. Floor tiles are individual PNGs in `assets/floors/`, and wall tile sets are in `assets/walls/`. This modular structure makes it easy to add, remove, or modify assets without touching any code.
 
@@ -169,11 +169,11 @@ If your agent appears stuck on idle or doesn't spawn:
 The long-term vision is an interface where managing AI agents feels like playing the Sims, but the results are real things built.
 
 - **Agents as characters** you can see, assign, monitor, and redirect, each with visible roles (designer, coder, writer, reviewer), stats, context usage, and tools.
-- **Desks as directories** — drag an agent to a desk to assign it to a project or working directory.
-- **An office as a project** — with a Kanban board on the wall where idle agents can pick up tasks autonomously.
+- **Decks as projects** — drag an active agent onto the yacht deck to assign it to a project or working directory. Idle agents drift in the sea until reassigned.
+- **A yacht as a project** — with a mission board on the deck where sea-drifting idle agents can pick up tasks autonomously and board the yacht.
 - **Deep inspection** — click any agent to see its model, branch, system prompt, and full work history. Interrupt it, chat with it, or redirect it.
 - **Token health bars** — rate limits and context windows visualized as in-game stats.
-- **Fully customizable** — upload your own character sprites, themes, and office assets. Eventually maybe even move beyond pixel art into 3D or VR.
+- **Fully customizable** — upload your own character sprites, themes, and yacht/sea assets. Eventually maybe even move beyond pixel art into 3D or VR.
 
 For this to work, the architecture needs to be modular at every level:
 
@@ -205,6 +205,25 @@ If you find Pixel Agents useful, consider supporting its development:
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=pixel-agents-hq/pixel-agents&type=Date)](https://www.star-history.com/?repos=pixel-agents-hq%2Fpixel-agents&type=date&legend=bottom-right)
+
+## 변경 이력 (Concept Changes)
+
+| # | 변경 내용 | 이유 |
+|---|-----------|------|
+| 1 | [변경] `pixel art office` → `pixel art yacht scene on the sea` / 이유: 오피스 배경을 바다 위 요트 씬으로 교체 — 더 역동적이고 시각적으로 독특한 세계관 구성 |
+| 2 | [변경] `They walk around, sit at their desk` → `Agents that are actively working sail on the yacht deck, while idle agents float and lie in the sea below` / 이유: 일하는 인원(활성 에이전트)은 요트 위, 일하지 않는 인원(유휴 에이전트)은 바다에 누워있는 방식으로 상태를 공간으로 시각화 |
+| 3 | [변경] `serves the office as a browser SPA` → `serves the yacht scene as a browser SPA` / 이유: 배경 컨셉 변경에 따른 용어 통일 |
+| 4 | [변경] `Office layout editor` → `Yacht layout editor` / 이유: 레이아웃 에디터의 대상이 오피스에서 요트 씬으로 변경 |
+| 5 | [변경] `design your office with floors, walls, and furniture` → `design your yacht and sea scene with decks, cabins, and furniture` / 이유: 요트·바다 씬에 맞는 공간 요소(갑판, 선실)로 교체 |
+| 6 | [변경] `open the office editor and customize your space` → `open the yacht editor and customize your scene` / 이유: 용어 통일 |
+| 7 | [변경] `The built-in editor lets you design your office` → `The built-in editor lets you design your yacht and sea scene` / 이유: 용어 통일 |
+| 8 | [변경] `## Office Assets` → `## Yacht & Sea Assets` / 이유: 섹션 제목을 새 컨셉에 맞게 변경 |
+| 9 | [변경] `All office assets (furniture, floors, walls)` → `All yacht and sea assets (furniture, decks, water)` / 이유: 에셋 종류를 요트·바다 씬에 맞게 교체 |
+| 10 | [변경] `Desks as directories` → `Decks as projects` (갑판이 프로젝트 단위), idle 에이전트는 바다에 표류하다가 재배정 시 요트에 탑승 / 이유: 일하는/쉬는 상태를 갑판(요트 위) vs 바다(표류)로 공간 구분 |
+| 11 | [변경] `An office as a project` → `A yacht as a project`, Kanban board on the wall → mission board on the deck / 이유: 공간 단위를 오피스에서 요트로 교체, 바다에 있던 유휴 에이전트가 임무를 집어 요트에 탑승하는 흐름 강조 |
+| 12 | [변경] `office assets` (Fully customizable 항목) → `yacht/sea assets` / 이유: 용어 통일 |
+
+---
 
 ## License
 
